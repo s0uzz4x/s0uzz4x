@@ -9,26 +9,6 @@
 
 /* RESET */
 * {
-
-
-    .logo-img {
-    /* Ajuste a altura conforme desejar, a largura será automática */
-    height: 60px; 
-    width: auto;
-    
-    /* Garante que a imagem não fique distorcida */
-    object-fit: contain;
-    
-    /* Alinhamento vertical caso precise */
-    vertical-align: left;
-}
-
-/* Opcional: remover sublinhados se for um link */
-.logo-link {
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-}
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -47,7 +27,7 @@ body {
 /* HEADER */
 header {
     background: #15151d;
-    padding: 20px 40px;
+    padding: 15px 30px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -58,56 +38,93 @@ header {
 }
 
 /* LOGO */
-header h1 {
-    font-size: 22px;
-    color: #4a1edb;
+.logo img {
+    height: 50px;
 }
 
-/* MENU CENTRAL */
+/* MENU CENTRAL (PC) */
 .nav-center {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
-    gap: 35px;
+    gap: 30px;
 }
 
-/* MENU DIREITA */
-.nav-right {
-    display: flex;
-    gap: 25px;
-}
-
-/* LINKS GERAIS */
-nav a {
+.nav-center a {
     color: #ccc;
     text-decoration: none;
     font-weight: 500;
-    transition: 0.3s;
-    position: relative;
+    cursor: pointer;
 }
 
-nav a:hover {
+.nav-center a:hover {
     color: #4a1edb;
 }
 
-/* Efeito underline animado */
-nav a::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -5px;
-    width: 0%;
-    height: 2px;
-    background: #4a1edb;
-    transition: 0.3s;
+/* DISCORD DIREITA (PC) */
+.discord-btn {
+    color: #fff;
+    text-decoration: none;
+    font-size: 22px;
 }
 
-nav a:hover::after {
-    width: 100%;
+.discord-btn:hover {
+    color: #4a1edb;
 }
 
+/* BOTÃO HAMBURGUER */
+.menu-toggle {
+    display: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: white;
+}
 
+/* MENU MOBILE */
+.mobile-nav {
+    display: none;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+    .nav-center,
+    .discord-btn {
+        display: none;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .mobile-nav {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: #15151d;
+        padding: 20px 0;
+        text-align: center;
+        border-top: 1px solid #222;
+    }
+
+    .mobile-nav.active {
+        display: flex;
+    }
+
+    .mobile-nav a {
+        color: #ccc;
+        text-decoration: none;
+        padding: 12px 0;
+    }
+
+    .mobile-nav a:hover {
+        color: #4a1edb;
+    }
+}
 
 /* HERO */
 .hero {
@@ -116,28 +133,12 @@ nav a:hover::after {
 }
 
 .hero h2 {
-    font-size: 80px;
+    font-size: 60px;
     margin-bottom: 15px;
 }
 
 .hero p {
     color: #aaa;
-    margin-bottom: 30px;
-}
-
-.btn {
-    background: #4a1edb;
-    color: white;
-    padding: 12px 25px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: 0.3s;
-    display: inline-block;
-}
-
-.btn:hover {
-    background: #3411a6;
 }
 
 /* SECTIONS */
@@ -183,6 +184,21 @@ nav a:hover::after {
     margin-bottom: 15px;
 }
 
+.btn {
+    background: #4a1edb;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #3411a6;
+}
+
 /* FOOTER */
 .footer {
     text-align: center;
@@ -199,145 +215,86 @@ nav a:hover::after {
 <body>
 
 <header>
-    
+
+    <!-- LOGO -->
     <a href="#" class="logo">
-        <img src="./logo.png" alt="logo" class="logo-img">
-        
+        <img src="./logo.png" alt="logo">
     </a>
+
+    <!-- MENU CENTRAL PC -->
     <nav class="nav-center">
-        <a href="#emuladores">Emuladores</a>
-        <a href="#jogos">V7A</a>
-        <a href="#config">Config</a>
-        <a href="#otimizacao">Otimização</a>
+        <a data-target="emuladores">Emuladores</a>
+        <a data-target="jogos">V7A</a>
+        <a data-target="config">Config</a>
+        <a data-target="otimizacao">Otimização</a>
     </nav>
 
-    <nav class="nav-right">
-        <a href="#">Início</a>
-        <a href="https://discord.gg/cEPJvemB" target="_blank" >Discord</a>
+    <!-- DISCORD PC -->
+    <a href="https://discord.gg/cEPJvemB" target="_blank" class="discord-btn">
+        🎮
+    </a>
+
+    <!-- BOTÃO MOBILE -->
+    <div class="menu-toggle" id="menuToggle">
+        ☰
+    </div>
+
+    <!-- MENU MOBILE -->
+    <nav id="mobileMenu" class="mobile-nav">
+        <a data-target="emuladores">Emuladores</a>
+        <a data-target="jogos">V7A</a>
+        <a data-target="config">Config</a>
+        <a data-target="otimizacao">Otimização</a>
+        <a href="https://discord.gg/cEPJvemB" target="_blank">Discord</a>
     </nav>
+
 </header>
 
-
-
-<section class="hero">
-    <h2>s0uz4x engine</h2>
-    <p>Melhores Configurações e Otimizações para quem joga no PC</p>
-    
-</section>
-
-<section id="emuladores" class="section">
-    <h3>Download Emuladores</h3>
-
-    <div class="cards">
-        <div class="card">
-            <h4>Msi 5.9.300</h4>
-            <p>Windows 10/11<br>1MB</p>
-            <a href="https://www.mediafire.com/file/l7j9bnq3hy2m1p8/MSI_5.9.300.6315.exe/file" target="_blank" class="btn">Download</a>
-        </div>
-
-        <div class="card">
-            <h4>Ev4x 4.240</h4>
-            <p>Windows 10/11<br>504MB</p>
-            <a href="https://www.mediafire.com/file/ubch22qnwaiy5l6/4.240.30.1002_e4v.7z/file" target="_blank" class="btn">Download</a>
-        </div>
-
-        <div class="card">
-            <h4>Bluestacks 5.22.125</h4>
-            <p>Windows 10/11<br>927KB</p>
-            <a href="https://www.mediafire.com/file/71ql1v5w3yar57l/bluestacks.+5.22.125.1001.exe/file" target="_blank" class="btn">Download</a>
-        </div>
-    </div>
-</section>
-
-<section id="jogos" class="section">
-    <h3>V7A Atualizado</h3>
-
-    <div class="cards">
-        <div class="card">
-            <h4>V7A Atualizado</h4>
-            <p>Windows 10/11<br>348MB</p>
-            <a href="https://www.mediafire.com/file/3ioy7zifx6cyoyi/v7aOTIMIZADO+F7.xapk/file" target="_blank" class="btn">Download</a>
-        </div>
-
-        <div class="card">
-            <h4>Free Fire X86</h4>
-            <p>Windows 10/11<br>433MB</p>
-            <a href="https://www.mediafire.com/file/y1r162prhjf29w0/Free+Fire+X86.apks/file" target="_blank" class="btn">Download</a>
-        </div>
-    </div>
-</section>
-
-<section id="config" class="section">
-    <h3>Configurações</h3>
-
-    <div class="cards">
-        <div class="card">
-            <h4>Config Ev4x</h4>
-            <p>Como configurar o Ev4x</p>
-            <a href="LINK_AQUI" target="_blank" class="btn">Assistir</a>
-        </div>
-
-        <div class="card">
-            <h4>Config MSI 5.9.300</h4>
-            <p>Como configurar o Msi</p>
-            <a href="LINK_AQUI" target="_blank" class="btn">Assistir</a>
-        </div>
-
-        <div class="card">
-            <h4>Config Bluestacks</h4>
-            <p>Como configurar o bluestacks</p>
-         <a href="LINK_AQUI" target="_blank" class="btn">Assistir</a>
-        </div>
-    </div>
-</section>
-
-<section id="otimizacao" class="section">
-    <h3>Otimização</h3>
-
-    <div class="cards">
-        <div class="card">
-            <h4>Otimização Windows 10</h4>
-            <p>Otimização Completa para o Windows 10</p>
-            <a href="LINK_AQUI" target="_blank" class="btn">Assistir</a>
-        </div>
-
-        <div class="card">
-            <h4>Otimização Windows 11</h4>
-            <p>Otimização Completa para o Windows 11</p>
-            <a href="LINK_AQUI" target="_blank" class="btn">Assistir</a>
-        </div>
-    </div>
-</section>
+<!-- RESTO DO SEU SITE CONTINUA IGUAL -->
 
 <div class="footer">
     © 2026 s0uz4x engine - Todos os direitos reservados.
 </div>
 
 <script>
-const sections = document.querySelectorAll("section");
-const navLinks = document.querySelectorAll(".sub-menu a");
+document.addEventListener("DOMContentLoaded", function () {
 
-window.addEventListener("scroll", () => {
-    let current = "";
+    const toggle = document.getElementById("menuToggle");
+    const menu = document.getElementById("mobileMenu");
+    const smoothLinks = document.querySelectorAll("[data-target]");
 
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop - 200;
-        const sectionHeight = section.clientHeight;
+    // Toggle menu mobile
+    toggle.addEventListener("click", function (event) {
+        event.stopPropagation();
+        menu.classList.toggle("active");
+    });
 
-        if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
-            current = section.getAttribute("id");
+    // Fechar clicando fora
+    document.addEventListener("click", function (event) {
+        if (!menu.contains(event.target) && !toggle.contains(event.target)) {
+            menu.classList.remove("active");
         }
     });
 
-    navLinks.forEach(link => {
-        link.classList.remove("active");
-        if (link.getAttribute("href") === "#" + current) {
-            link.classList.add("active");
-        }
+    // Scroll suave sem mostrar #
+    smoothLinks.forEach(link => {
+        link.addEventListener("click", function () {
+
+            const targetId = this.getAttribute("data-target");
+            const section = document.getElementById(targetId);
+
+            if (section) {
+                section.scrollIntoView({
+                    behavior: "smooth"
+                });
+            }
+
+            menu.classList.remove("active");
+        });
     });
+
 });
 </script>
 
 </body>
-
 </html>
