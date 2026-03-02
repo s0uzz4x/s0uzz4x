@@ -7,6 +7,72 @@
 
 <style>
 
+/* ===== GLOW GAMER EFFECT ===== */
+
+:root {
+    --neon: #7c3cff;
+    --neon-strong: #a855ff;
+}
+
+/* MENU HOVER GLOW */
+.nav-center a:hover,
+.mobile-nav a:hover {
+    color: var(--neon-strong);
+    text-shadow:
+        0 0 5px var(--neon),
+        0 0 10px var(--neon),
+        0 0 20px var(--neon);
+}
+
+/* BOTÕES GLOW */
+.btn {
+    box-shadow: 0 0 10px rgba(124, 60, 255, 0.4);
+}
+
+.btn:hover {
+    box-shadow:
+        0 0 10px var(--neon),
+        0 0 20px var(--neon),
+        0 0 40px var(--neon);
+    transform: translateY(-4px);
+}
+
+/* DISCORD GLOW */
+.discord-btn {
+    transition: 0.3s;
+}
+
+.discord-btn:hover {
+    color: var(--neon-strong);
+    text-shadow:
+        0 0 8px var(--neon),
+        0 0 16px var(--neon),
+        0 0 30px var(--neon);
+}
+
+/* CARD GLOW */
+.card:hover {
+    box-shadow:
+        0 0 15px rgba(124, 60, 255, 0.5),
+        0 0 30px rgba(124, 60, 255, 0.3);
+    border: 1px solid var(--neon);
+}
+
+/* LOGO GLOW */
+.logo img {
+    transition: 0.3s;
+}
+
+.logo img:hover {
+    filter: drop-shadow(0 0 10px var(--neon))
+            drop-shadow(0 0 20px var(--neon));
+}
+
+/* HEADER LIGHT LINE */
+header {
+    box-shadow: 0 0 15px rgba(124, 60, 255, 0.3);
+}
+    
 /* RESET */
 * {
     margin: 0;
@@ -298,3 +364,4 @@ document.addEventListener("DOMContentLoaded", function () {
 
 </body>
 </html>
+
