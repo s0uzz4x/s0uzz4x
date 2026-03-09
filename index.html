@@ -84,23 +84,20 @@ header {
     top: 20px;
     left: 50%;
     transform: translateX(-50%);
-
-    height: 60px;
-    max-height: 60px;
     
-    width: 1000px;
-    max-width: 1200px;
+    width: 80%;
+    height: 60px; /* altura da barra */
 
-    background: #070711;
-    border: 1px solid #6a00ff;
-    border-radius: 18px;
+    border-radius: 30px;
+    border: 2px solid #7a00ff;
+    box-shadow: 0 0 15px #7a00ff;
 
-    padding: 6px 10px; /* DIMINUI A ALTURA */
+    display: flex;
+    align-items: center;   /* centraliza verticalmente */
+    justify-content: space-between; /* separa logo e menu */
 
-    box-shadow: 0 0 20px rgba(106,0,255,0.4);
-    backdrop-filter: blur(10px);
-
-    z-index: 1000;
+    padding: 0 25px;
+    background: rgba(0,0,0,0.7);
 }
 
 /* LOGO */
@@ -498,6 +495,7 @@ smoothLinks.forEach(link => {
 
 </body>
 </html>
+
 
 
 
