@@ -91,15 +91,25 @@ body {
 
 /* HEADER */
 header {
-  background: #15151d;
-    padding: 15px 30px;
-    display: flex;
-    align-items: center;
-    border-bottom: 2px solid #4a1edb;
     position: fixed;
-    top: 0;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    
+    width: 90%;
+    max-width: 1200px;
+
+    background: #0b0b12;
+    border: 1px solid #6a00ff;
+
+    border-radius: 20px;
+    padding: 12px 25px;
+
+    box-shadow: 0 0 20px rgba(106, 0, 255, 0.4);
+
+    backdrop-filter: blur(10px);
+
     z-index: 1000;
-    position: relative;
 }
 
 /* LOGO */
@@ -497,6 +507,7 @@ smoothLinks.forEach(link => {
 
 </body>
 </html>
+
 
 
 
